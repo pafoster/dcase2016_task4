@@ -22,6 +22,7 @@ from src.ui import *
 from src.general import *
 from src.features import *
 from src.dataset import *
+from src.dataset_chimehome import *
 from src.evaluation import *
 from src.eer import *
 

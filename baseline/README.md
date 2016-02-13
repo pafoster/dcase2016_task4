@@ -276,6 +276,23 @@ This section contains the frame classification related parameters.
 7. License
 =================================
 
+The following code is licensed by Tampere University of Technology (please refer to EULA.pdf, Appendix 1):
+
+task4_audio_tagging.py
+src/dataset.py
+src/evaluation.py
+src/files.py
+src/ui.py
+src/features.py
+src/general.py
+src/sound_event_detection.py
+
+The following code is available under the GNU General Public License:
+
+src/eer.py
+src/dataset_chimehome.py
+
+
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 3 of the License, or
