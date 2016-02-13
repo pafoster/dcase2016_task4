@@ -830,6 +830,10 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(Dataset):
             with open(self.package_list[0]['development_chunks_refined_csv'], 'rt') as f:
                 for row in csv.reader(f, delimiter=','):
                     refined_files.append(row[1])
+            if 'evaluation_chunks_refined_csv' in self.package_list[0].keys():
+                 with open(self.package_list[0]['evaluation_chunks_refined_csv'], 'rt') as f:
+                    for row in csv.reader(f, delimiter=','):
+                        refined_files.append(row[1])       
 
             self.files = []
             for file in self.package_list:
@@ -857,6 +861,8 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(Dataset):
             finally:
                 meta_file_handle.close()
             return data
+        else:
+            return None
 
     def tagcode_to_taglabel(self, tag):
         map = {'c': 'child speech',
@@ -991,12 +997,16 @@ class CHiMEHome_DomesticAudioTag_ChallengeSet(CHiMEHome_DomesticAudioTag_Develop
                     meta_data = self.read_chunk_meta(annotation_filename)
                     tags = []
 
-                    for i, tag in enumerate(meta_data['majorityvote']):
-                        if tag is not 'S' and tag is not 'U':
-                            tags.append(tag)
-                    tags = ';'.join(tags)
-                    writer.writerow(
-                        (os.path.join(relative_path, raw_filename), scene_label, meta_data['majorityvote'], tags))
+                    if meta_data is not None:
+                        for i, tag in enumerate(meta_data['majorityvote']):
+                            if tag is not 'S' and tag is not 'U':
+                                tags.append(tag)
+                        tags = ';'.join(tags)
+                        writer.writerow(
+                            (os.path.join(relative_path, raw_filename), scene_label, meta_data['majorityvote'], tags))
+                    else:
+                        writer.writerow(
+                            (os.path.join(relative_path, raw_filename), None, None))
             finally:
                 f.close()
             foot()
@@ -1029,16 +1039,6 @@ class CHiMEHome_DomesticAudioTag_ChallengeSet(CHiMEHome_DomesticAudioTag_Develop
                     raw_path, raw_filename = os.path.split(file)
                     relative_path = self.absolute_to_relative(raw_path)
                     writer.writerow([os.path.join(relative_path, raw_filename)])
-
-            #_evaluate.txt in this context refers to a list of testing files with their annotations (cf. _test.txt)
-            with open(os.path.join(self.evaluation_setup_path, 'fold' + str(fold) + '_evaluate.txt'), 'wt') as f:
-                writer = csv.writer(f, delimiter='\t')
-                for file in files:
-                    raw_path, raw_filename = os.path.split(file)
-                    relative_path = self.absolute_to_relative(raw_path)
-                    item = self.file_meta(file)[0]
-                    writer.writerow([os.path.join(relative_path, raw_filename), item['scene_label'],item['tag_string'], ';'.join(item['tags'])])
-
                       
 # DCASE2013
 # =====================================================
