@@ -499,11 +499,11 @@ def do_system_evaluation(dataset, dataset_evaluation_mode, result_path):
     print "     ==============================================="
     labels = numpy.array([dataset.tagcode_to_taglabel(t) for t in dataset.audio_tags])
     for i in numpy.argsort(labels):
-        print "     {:20s} | {:3.2f} ".format(labels[i],
+        print "     {:20s} | {:3.3f} ".format(labels[i],
                                                                     numpy.nanmean(fold_wise_class_eer[:,i])
                                                                     )
     print "     ==============================================="
-    print "     {:20s} | {:3.2f} ".format('Mean error',
+    print "     {:20s} | {:3.3f} ".format('Mean error',
                                                       numpy.mean(numpy.nanmean(fold_wise_class_eer))
                                                       )
     # Restore warnings to default settings
