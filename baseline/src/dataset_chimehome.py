@@ -35,8 +35,7 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(Dataset):
 
         self.package_list = [
             {
-                #'remote_package': 'https://archive.org/download/chime-home/chime_home.tar.gz',
-                'remote_package': 'http://eecs.qmul.ac.uk/~peterf/chime_home.tar.gz',
+                'remote_package': 'https://archive.org/download/chime-home/chime_home.tar.gz',
                 'local_package': os.path.join(self.local_path, 'chime_home.tar.gz'),
                 'local_audio_path': os.path.join(self.local_path, 'chime_home', 'chunks'),
                 'development_chunks_refined_csv': os.path.join(self.local_path, 'chime_home', 'development_chunks_refined.csv'),
@@ -198,7 +197,8 @@ class CHiMEHome_DomesticAudioTag_ChallengeSet(CHiMEHome_DomesticAudioTag_Develop
     def __init__(self, data_path=None, name='CHiMEHome-audiotag-challenge', evaluation_folds=1):
         CHiMEHome_DomesticAudioTag_DevelopmentSet.__init__(self, data_path, name, evaluation_folds)        
         self.package_list[0]['evaluation_chunks_refined_csv'] = os.path.join(self.local_path, 'chime_home', 'evaluation_chunks_refined.csv')                
-        self.package_list[0]['remote_package'] = 'http://eecs.qmul.ac.uk/~peterf/chime_home_include_evaluation_data.tar.gz'
+        #This is inefficient; since the data may already have been downloaded as part of `development' mode.
+        self.package_list[0]['remote_package'] = 'https://archive.org/download/chime-home/chime_home.tar.gz'
                         
     def folds(self, mode='folds'):
             return range(1, self.evaluation_folds + 1)        
