@@ -36,8 +36,8 @@ path:
 # ==========================================================
 features:
   fs: 16000
-  win_length_seconds: 0.02
-  hop_length_seconds: 0.01
+  win_length_seconds: 0.064
+  hop_length_seconds: 0.032
 
   include_mfcc0: false
   include_delta: false
@@ -70,7 +70,7 @@ classifier_parameters:
     n_components: 8             # Number of Gaussian components
     covariance_type: full       # [diag|full] Diagonal or full covariance matrix
     random_state: 0
-    thresh: !!null
+    thresh: None
     tol: 0.001
     min_covar: 0.001
     n_iter: 100
