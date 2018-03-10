@@ -46,7 +46,7 @@ PyYAML is required for handling the configuration files.
 [*librosa*](https://github.com/bmcfee/librosa)
 `pip install librosa==0.4.3`
 
-Librosa is required for the feature extraction.
+Librosa 0.4.3 is required for the feature extraction.
 
 3. Usage
 =================================
