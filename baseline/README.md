@@ -34,7 +34,7 @@ The system is developed for [Python 2.7](https://www.python.org/). Currently, th
 **External modules required**
 
 [*numpy*](http://www.numpy.org/), [*scipy*](http://www.scipy.org/), [*scikit-learn*](http://scikit-learn.org/)
-`pip install numpy scipy scikit-learn`
+`pip install numpy scipy scikit-learn==0.17`
 
 Scikit-learn 0.17 is required for the machine learning implementations.
 
@@ -44,7 +44,7 @@ Scikit-learn 0.17 is required for the machine learning implementations.
 PyYAML is required for handling the configuration files.
 
 [*librosa*](https://github.com/bmcfee/librosa)
-`pip install librosa`
+`pip install librosa==0.4.3`
 
 Librosa is required for the feature extraction.
 
@@ -198,7 +198,7 @@ This section contains the feature extraction related parameters.
 
     features:
       fs: 16000
-      win_length_seconds: 0.02
+      win_length_seconds: 0.064
       hop_length_seconds: 0.01
 
       include_mfcc0: false          #
@@ -224,7 +224,7 @@ This section contains the feature extraction related parameters.
 : Default sampling frequency. If given dataset does not fulfil this criterion the audio data is resampled.
 
 
-`win_length_seconds: 0.02`
+`win_length_seconds: 0.064`
 : Feature extraction frame length in seconds.
     
 
